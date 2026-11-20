@@ -1,9 +1,15 @@
+import dns from "node:dns";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { jwt } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 import { MongoClient } from "mongodb";
+
+// Some networks refuse the SRV lookup that mongodb+srv:// needs.
+if (process.env.DNS_SERVERS) {
+  dns.setServers(process.env.DNS_SERVERS.split(",").map((s) => s.trim()));
+}
 
 // Reuse one MongoClient across hot reloads in development.
 const globalForMongo = globalThis as unknown as { _booknookMongo?: MongoClient };
