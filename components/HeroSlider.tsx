@@ -49,23 +49,22 @@ export default function HeroSlider() {
       >
         {SLIDES.map((s) => (
           <SwiperSlide key={s.title}>
-            <div className="mx-auto grid min-h-[520px] max-w-7xl items-center gap-10 px-4 pb-20 pt-14 sm:px-6 md:min-h-[600px] md:grid-cols-[5fr_7fr] lg:min-h-[660px]">
-              {/* Left: text and button, left-aligned */}
-              <div className="text-left">
+            <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-10 sm:px-6 md:min-h-[560px] md:grid-cols-2">
+              {/* Phone: centered. Tablet and desktop: left-aligned beside the image. */}
+              <div className="text-center md:text-left">
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl">{s.title}</h2>
-                <p className="mt-4 max-w-lg text-base-content/80">{s.text}</p>
+                <p className="mx-auto mt-4 max-w-lg text-base-content/80 md:mx-0">{s.text}</p>
                 <Link href="/books" className="btn btn-primary mt-6">
                   Browse Books <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>
 
-              {/* Right: taller image card */}
               <div className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-100 via-orange-50 to-orange-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={s.image}
                   alt={s.alt}
-                  className="block h-[300px] w-full object-cover object-center md:h-[460px]"
+                  className="mx-auto block h-[260px] w-full object-contain sm:h-[340px] md:h-[420px]"
                   onError={(e) => (e.currentTarget.style.display = "none")}
                 />
               </div>
