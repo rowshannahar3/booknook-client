@@ -106,3 +106,36 @@
   --swiper-pagination-bullet-inactive-color: var(--color-base-content);
   --swiper-pagination-bullet-inactive-opacity: 0.35;
 }
+/* Shiny primary buttons: a soft light sweep every few seconds, plus a glow on hover. */
+@keyframes btn-shine {
+  0%,
+  55% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+.btn-primary:not(.btn-outline):not(:disabled):not(.btn-disabled) {
+  background-image: linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 0.55) 50%, transparent 62%);
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: 160% 0;
+  animation: btn-shine 3s ease-in-out infinite;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-primary:not(.btn-outline):not(:disabled):not(.btn-disabled):hover {
+  box-shadow: 0 10px 26px -8px color-mix(in oklab, var(--color-primary) 80%, transparent);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:not(.btn-outline) {
+    animation: none;
+    background-image: none;
+  }
+}
