@@ -14,8 +14,14 @@ export function BookCardSkeleton() {
 
 export function SkeletonGrid({ count = 6 }: { count?: number }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="status" aria-label="Loading books">
-      {Array.from({ length: count }, (_, i) => <BookCardSkeleton key={i} />)}
+    <div role="status" aria-label="Loading books">
+      <div className="mb-6 flex items-center justify-center gap-3 text-base-content/70">
+        <span className="loading loading-spinner loading-md text-primary" aria-hidden="true" />
+        <span className="text-sm">Loading books…</span>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: count }, (_, i) => <BookCardSkeleton key={i} />)}
+      </div>
     </div>
   );
 }

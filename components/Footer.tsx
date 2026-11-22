@@ -31,7 +31,7 @@ export default function Footer() {
           <ul className="flex flex-wrap items-center gap-2">
             <li>
               <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="BookNook on X" className="btn btn-outline btn-sm">
-                X
+                <XIcon className="size-4" />
               </a>
             </li>
             {SOCIALS.map((s) => (

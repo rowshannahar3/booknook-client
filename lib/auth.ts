@@ -30,6 +30,17 @@ export const auth = betterAuth({
     minPasswordLength: 6,
     autoSignIn: false, // assignment: after registering, send the user to Login
   },
+    account: {
+    // If someone registered with email/password first and later uses Google with the same email,
+    // link the Google login to the existing account. Google verifies email ownership.
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+      // Accounts made with email + password are not email-verified (the assignment skips verification),
+      // so the default rule would still block linking.
+      requireLocalEmailVerified: false,
+    },
+  },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
