@@ -3,6 +3,12 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./Logo";
 import XIcon from "./XIcon";
 
+const SOCIALS = [
+  { label: "Facebook", href: "https://facebook.com" },
+  { label: "LinkedIn", href: "https://linkedin.com" },
+  { label: "GitHub", href: "https://github.com" },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-base-content/10 bg-base-200">
@@ -22,13 +28,22 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h2 className="mb-3 text-lg">Follow</h2>
-          <div className="flex gap-3">
-            <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="BookNook on X" className="btn btn-outline btn-circle btn-sm">
-              <XIcon className="size-4" />
-            </a>
-            <Link href="/books" className="btn btn-ghost btn-sm">Browse the shelves</Link>
-          </div>
+          <h2 className="mb-3 text-lg">Follow us</h2>
+          <ul className="flex flex-wrap items-center gap-2">
+            <li>
+              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="BookNook on X" className="btn btn-outline btn-sm gap-2">
+                <XIcon className="size-4" /> X
+              </a>
+            </li>
+            {SOCIALS.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noreferrer" aria-label={`BookNook on ${s.label}`} className="btn btn-outline btn-sm">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Link href="/books" className="mt-4 inline-block text-sm text-base-content/70 hover:text-primary">Browse the shelves</Link>
         </div>
       </div>
       <p className="border-t border-base-content/10 py-4 text-center text-xs text-base-content/60">

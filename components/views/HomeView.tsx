@@ -2,8 +2,8 @@ import HeroSlider from "../HeroSlider";
 import NewArrivals from "../NewArrivals";
 import ShelfTiles from "../ShelfTiles";
 import HowItWorks from "../HowItWorks";
-import ShareBanner from "../ShareBanner";
 
+// Banner/slider + New Arrivals + exactly 2 extra static sections (Browse by Shelf, How Borrowing Works).
 export default function HomeView() {
   return (
     <>
@@ -11,7 +11,6 @@ export default function HomeView() {
       <NewArrivals />
       <ShelfTiles />
       <HowItWorks />
-      <ShareBanner />
     </>
   );
 }
