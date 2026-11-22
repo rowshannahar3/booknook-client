@@ -6,7 +6,6 @@ import XIcon from "./XIcon";
 const SOCIALS = [
   { label: "Facebook", href: "https://facebook.com" },
   { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "GitHub", href: "https://github.com" },
 ];
 
 export default function Footer() {
@@ -31,8 +30,8 @@ export default function Footer() {
           <h2 className="mb-3 text-lg">Follow us</h2>
           <ul className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="BookNook on X" className="btn btn-outline btn-sm gap-2">
-                <XIcon className="size-4" /> X
+              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="BookNook on X" className="btn btn-outline btn-sm">
+                X
               </a>
             </li>
             {SOCIALS.map((s) => (
