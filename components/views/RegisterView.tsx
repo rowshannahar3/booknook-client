@@ -22,6 +22,11 @@ export default function RegisterView() {
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [k]: e.target.value });
   const rulesOk = PASSWORD_RULES.every((r) => r.test(form.password));
 
+  async function googleSignIn() {
+    const { error } = await authClient.signIn.social({ provider: "google", callbackURL: "/" });
+    if (error) toast.error(error.message || "Google sign-in isn't available right now. Please try again.");
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");

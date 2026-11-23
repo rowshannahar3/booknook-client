@@ -38,7 +38,8 @@ export default function LoginView() {
   }
 
   async function google() {
-    await authClient.signIn.social({ provider: "google", callbackURL: redirect });
+    const { error } = await authClient.signIn.social({ provider: "google", callbackURL: redirect });
+    if (error) toast.error(error.message || "Google sign-in isn't available right now. Please try again.");
   }
 
   return (
