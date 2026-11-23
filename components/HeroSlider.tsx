@@ -1,10 +1,18 @@
+
 "use client";
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Autoplay, EffectFade, Keyboard, Pagination } from "swiper/modules";
+import {
+  A11y,
+  Autoplay,
+  EffectFade,
+  Keyboard,
+  Pagination,
+} from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
@@ -33,9 +41,11 @@ const SLIDES = [
 
 export default function HeroSlider() {
   const reduceMotion = useReducedMotion();
+
   return (
     <section aria-label="Featured" className="bg-base-100">
       <h1 className="sr-only">BookNook, a small online library</h1>
+
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, A11y, Keyboard]}
         effect="fade"
@@ -45,29 +55,49 @@ export default function HeroSlider() {
         keyboard
         a11y={{ enabled: true }}
         pagination={{ clickable: true }}
-        autoplay={reduceMotion ? false : { delay: 2000, pauseOnMouseEnter: true, disableOnInteraction: false }}
+        autoplay={
+          reduceMotion
+            ? false
+            : {
+              delay: 2000,
+              pauseOnMouseEnter: true,
+              disableOnInteraction: false,
+            }
+        }
       >
         {SLIDES.map((s) => (
           <SwiperSlide key={s.title}>
             <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-10 sm:px-6 md:min-h-[560px] md:grid-cols-2">
-              {/* Phone: centered. Tablet and desktop: left-aligned beside the image. */}
+
+              {/* Phone: centered. Tablet and desktop: left-aligned. */}
               <div className="text-center md:text-left">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl">{s.title}</h2>
-                <p className="mx-auto mt-4 max-w-lg text-base-content/80 md:mx-0">{s.text}</p>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl">
+                  {s.title}
+                </h2>
+
+                <p className="mx-auto mt-4 max-w-lg text-base-content/80 md:mx-0">
+                  {s.text}
+                </p>
+
                 <Link href="/books" className="btn btn-primary mt-6">
-                  Browse Books <ArrowRight className="size-4" aria-hidden="true" />
+                  Browse Books
+                  <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>
 
+              {/* Full-width hero image */}
               <div className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-100 via-orange-50 to-orange-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={s.image}
                   alt={s.alt}
-                  className="mx-auto block h-[260px] w-full object-contain sm:h-[340px] md:h-[420px]"
-                  onError={(e) => (e.currentTarget.style.display = "none")}
+                  className="block h-auto w-full object-contain"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                 />
               </div>
+
             </div>
           </SwiperSlide>
         ))}

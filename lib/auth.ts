@@ -18,7 +18,7 @@ const client =
   new MongoClient(process.env.MONGODB_URI ?? "mongodb://localhost:27017");
 if (process.env.NODE_ENV !== "production") globalForMongo._booknookMongo = client;
 
-const db = client.db(process.env.MONGODB_DB ?? "booknook");
+const db = client.db(process.env.MONGODB_DB ?? "booknook_dev");
 const baseURL = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
 
 export const auth = betterAuth({
