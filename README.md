@@ -3,7 +3,7 @@
 A modern online library platform where readers can discover books, manage their own collections, borrow available copies, and track returns. BookNook combines a responsive Next.js application with a dedicated Express API, MongoDB persistence, and secure authentication.
 
 ## Project Links:
-- **[Live Application](https://booknook-rowshan.vercel.app/)  
+- **[Live Application](https://booknook-rowshan.vercel.app/)**  
 - **[Client Repository](https://github.com/rowshannahar3/booknook-client)**  
 - **[Server Repository](https://github.com/rowshannahar3/booknook-server)**
 
