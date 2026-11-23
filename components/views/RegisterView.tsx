@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Check, Circle } from "lucide-react";
+import { Check, Circle, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { PASSWORD_RULES, safeRedirect } from "@/lib/utils";
@@ -21,6 +21,7 @@ export default function RegisterView() {
   const [busy, setBusy] = useState(false);
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [k]: e.target.value });
   const rulesOk = PASSWORD_RULES.every((r) => r.test(form.password));
+  const [showPassword, setShowPassword] = useState(false);
 
   async function googleSignIn() {
     const { error } = await authClient.signIn.social({ provider: "google", callbackURL: "/" });
@@ -65,7 +66,12 @@ export default function RegisterView() {
           <label className="block"><span className="mb-1 block text-sm">Photo URL (optional)</span>
             <input type="url" placeholder="https://" className="input input-bordered w-full" value={form.image} onChange={set("image")} /></label>
           <label className="block"><span className="mb-1 block text-sm">Password</span>
-            <input type="password" required autoComplete="new-password" className="input input-bordered w-full" value={form.password} onChange={set("password")} aria-describedby="pw-rules" /></label>
+            <span className="input input-bordered flex w-full items-center gap-2">
+              <input type={showPassword ? "text" : "password"} required autoComplete="new-password" className="grow" value={form.password} onChange={set("password")} aria-describedby="pw-rules" />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} className="opacity-70 hover:opacity-100">
+                {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              </button>
+            </span></label>
           <ul id="pw-rules" className="space-y-1 text-sm">
             {PASSWORD_RULES.map((r) => {
               const ok = r.test(form.password);
